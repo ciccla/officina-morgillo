@@ -12,6 +12,7 @@ export default function GalleryClient({ foto, video }) {
             📸 <span className="text-white">Le nostre</span>{" "}
             <span className="text-blue-400 uppercase">FOTO</span>
           </h2>
+
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {foto.map((src, i) => (
               <div
@@ -37,6 +38,7 @@ export default function GalleryClient({ foto, video }) {
             🎥 <span className="text-white">I nostri</span>{" "}
             <span className="text-blue-400 uppercase">VIDEO</span>
           </h2>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {video.map((src, i) => (
               <div
@@ -48,9 +50,24 @@ export default function GalleryClient({ foto, video }) {
                   playsInline
                   preload="metadata"
                   muted
-                  className="w-full aspect-video object-cover rounded-2xl bg-black hover:opacity-90 transition"
+                  className="w-full rounded-2xl bg-black hover:opacity-90 transition
+                             aspect-video object-contain sm:object-cover"
+                  style={{
+                    transform: "rotate(0deg)", // blocca rotazione automatica
+                    maxHeight: "80vh",          // non supera l'altezza schermo
+                    backgroundColor: "#000",    // sfondo nero uniforme
+                  }}
                   onLoadedMetadata={(e) => {
+                    // mostra il primo frame come anteprima
                     e.target.currentTime = 0.1;
+
+                    // rileva se il video è verticale per adattare la classe
+                    const isVertical =
+                      e.target.videoHeight > e.target.videoWidth;
+                    if (isVertical) {
+                      e.target.classList.remove("aspect-video");
+                      e.target.classList.add("aspect-[9/16]");
+                    }
                   }}
                 >
                   <source src={src} type="video/mp4" />
