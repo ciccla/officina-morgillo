@@ -1,4 +1,5 @@
-﻿import fs from "fs";
+﻿"use client";
+import fs from "fs";
 import path from "path";
 import Image from "next/image";
 import Link from "next/link";
