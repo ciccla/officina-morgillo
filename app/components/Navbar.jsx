@@ -25,7 +25,11 @@ export default function Navbar() {
   const solid = "bg-white text-acc shadow-md";
 
   return (
-    <nav className={`${base} ${isHome ? transparent : solid}`}>
+<nav
+  className={`${base} transition-[background-color,backdrop-filter,color] duration-500 ease-in-out ${
+    isHome ? transparent : solid
+  }`}
+>
       {/* LOGO */}
       <h1
         className={`text-xl sm:text-2xl font-semibold tracking-tight ${

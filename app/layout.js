@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import Navbar from "./components/Navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,7 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="it" suppressHydrationWarning>
       <body className={`${poppins.className} bg-biancoTec text-acc min-h-screen flex flex-col`}>
-        {/* CONTENUTO DELLE PAGINE */}
+        {/* NAVBAR GLOBALE */}
+        <Navbar />
+
+        {/* CONTENUTO PAGINA */}
         <main className="flex-grow">{children}</main>
 
         {/* FOOTER */}
