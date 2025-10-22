@@ -10,37 +10,38 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // rileva lo scroll per attivare il blur
+  // Rileva lo scroll per applicare l’effetto fumo
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 30);
+    const onScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // chiude il menu mobile quando cambio pagina
+  // Chiude il menu mobile al cambio pagina
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Stile base e dinamico
+  // Base della navbar (sempre sopra tutto)
   const base =
-    "fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-6 z-50 transition-[background-color,backdrop-filter] duration-500 ease-in-out";
+    "fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-5 z-50 transition-all duration-500 ease-in-out";
 
+  // Effetto “fumo”: trasparente all’inizio, leggero blur e opacità su scroll
   const navbarStyle = isScrolled
-    ? "backdrop-blur-lg bg-black/20 text-white"
-    : "bg-transparent text-white";
+    ? "backdrop-blur-md bg-black/40 text-white shadow-[0_0_20px_rgba(0,0,0,0.2)]"
+    : "backdrop-blur-md bg-black/20 text-white";
 
   return (
     <nav className={`${base} ${navbarStyle}`}>
       {/* LOGO */}
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
         <Link href="/" onClick={() => setMenuOpen(false)}>
           Officina <span className="text-blue-400">Morgillo</span>
         </Link>
       </h1>
 
       {/* MENU DESKTOP */}
-      <ul className="hidden md:flex gap-8 text-base font-medium">
+      <ul className="hidden md:flex gap-8 text-base font-medium text-white">
         {["servizi", "chi-siamo", "vetrina", "gallery", "contatti"].map((p) => (
           <li key={p}>
             <Link
@@ -72,7 +73,7 @@ export default function Navbar() {
 
       {/* DRAWER MOBILE */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-black/70 backdrop-blur-md text-white flex flex-col items-center gap-6 py-8 md:hidden transition-all duration-300">
+        <div className="absolute top-full left-0 w-full bg-black/40 backdrop-blur-md text-white flex flex-col items-center gap-6 py-8 md:hidden transition-all duration-300">
           {["servizi", "chi-siamo", "vetrina", "gallery", "contatti"].map(
             (p) => (
               <Link
