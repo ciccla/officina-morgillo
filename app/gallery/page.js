@@ -109,16 +109,19 @@ export default function GalleriaPage() {
                 key={i}
                 className="rounded-2xl overflow-hidden bg-[#1a1e23] shadow-lg hover:scale-[1.02] transition-transform"
               >
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-auto object-cover rounded-2xl"
-                >
-                  <source src={src} type="video/mp4" />
-                  <source src={src} type="video/webm" />
-                  <source src={src} type="video/quicktime" />
-                </video>
+              <video
+  controls
+  playsInline
+  preload="none"
+  poster={`/galleria/video/thumbnails/${i + 1}.jpg`}
+  className="w-full h-auto object-cover rounded-2xl bg-black"
+>
+  <source src={src} type="video/mp4" />
+  <source src={src} type="video/webm" />
+  <source src={src} type="video/quicktime" />
+  Il tuo browser non supporta i video HTML5.
+</video>
+
               </div>
             ))}
           </div>
