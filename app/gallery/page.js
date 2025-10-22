@@ -1,15 +1,15 @@
-﻿"use client";
-import fs from "fs";
+﻿import fs from "fs";
 import path from "path";
 import Image from "next/image";
 import Link from "next/link";
+import GalleryClient from "./GalleryClient";
 
 export default function GalleriaPage() {
   // Percorsi alle cartelle pubbliche
   const fotoDir = path.join(process.cwd(), "public", "galleria", "foto");
   const videoDir = path.join(process.cwd(), "public", "galleria", "video");
 
-  // Legge i file presenti nelle cartelle
+  // Legge i file presenti nelle cartelle (solo lato server)
   const fotoFiles = fs.existsSync(fotoDir)
     ? fs.readdirSync(fotoDir).filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
     : [];
@@ -44,11 +44,31 @@ export default function GalleriaPage() {
           </h1>
 
           <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li><Link href="/servizi" className="hover:text-blue-400 transition">Servizi</Link></li>
-            <li><Link href="/chi-siamo" className="hover:text-blue-400 transition">Chi siamo</Link></li>
-            <li><Link href="/vetrina" className="hover:text-blue-400 transition">Vetrina</Link></li>
-            <li><Link href="/gallery" className="text-blue-400 font-semibold">Gallery</Link></li>
-            <li><Link href="/contatti" className="hover:text-blue-400 transition">Contatti</Link></li>
+            <li>
+              <Link href="/servizi" className="hover:text-blue-400 transition">
+                Servizi
+              </Link>
+            </li>
+            <li>
+              <Link href="/chi-siamo" className="hover:text-blue-400 transition">
+                Chi siamo
+              </Link>
+            </li>
+            <li>
+              <Link href="/vetrina" className="hover:text-blue-400 transition">
+                Vetrina
+              </Link>
+            </li>
+            <li>
+              <Link href="/gallery" className="text-blue-400 font-semibold">
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link href="/contatti" className="hover:text-blue-400 transition">
+                Contatti
+              </Link>
+            </li>
           </ul>
 
           <Link
@@ -65,73 +85,16 @@ export default function GalleriaPage() {
             La <span className="text-blue-400">galleria</span> dei nostri lavori
           </h1>
           <p className="text-gray-200 text-lg md:text-xl">
-            Scatti e video reali della nostra officina, dei nostri clienti e delle lavorazioni quotidiane.
+            Scatti e video reali della nostra officina, dei nostri clienti e
+            delle lavorazioni quotidiane.
           </p>
         </div>
 
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
-      {/* FOTO */}
-      {foto.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
-          <h2 className="text-3xl font-semibold mb-10 text-center">
-            📸 <span className="text-white">Le nostre</span>{" "}
-            <span className="text-blue-400 uppercase">FOTO</span>
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {foto.map((src, i) => (
-              <div
-                key={i}
-                className="relative aspect-[9/16] overflow-hidden rounded-2xl shadow-lg hover:scale-[1.03] transition-transform duration-300"
-              >
-                <Image
-                  src={src}
-                  alt={`Foto ${i + 1}`}
-                  fill
-                  className="object-cover object-center"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* VIDEO */}
-      {video.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
-          <h2 className="text-3xl font-semibold mb-10 text-center">
-            🎥 <span className="text-white">I nostri</span>{" "}
-            <span className="text-blue-400 uppercase">VIDEO</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {video.map((src, i) => (
-              <div
-                key={i}
-                className="rounded-2xl overflow-hidden bg-[#1a1e23] shadow-lg hover:scale-[1.02] transition-transform"
-              >
-              <video
-  controls
-  playsInline
-  preload="metadata"
-  muted
-  className="w-full aspect-video object-cover rounded-2xl bg-black hover:opacity-90 transition"
-  onLoadedMetadata={(e) => {
-    const video = e.target;
-    video.currentTime = 0.1; // mostra subito il primo frame
-  }}
->
-  <source src={src} type="video/mp4" />
-  <source src={src} type="video/webm" />
-  <source src={src} type="video/quicktime" />
-  Il tuo browser non supporta il video HTML5.
-</video>
-
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* FOTO + VIDEO */}
+      <GalleryClient foto={foto} video={video} />
 
       {/* CTA */}
       <section className="text-center py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
@@ -139,7 +102,8 @@ export default function GalleriaPage() {
           Seguici per vedere altri lavori
         </h2>
         <p className="text-gray-100 mb-8">
-          Aggiorniamo costantemente la nostra galleria con i lavori più recenti.
+          Aggiorniamo costantemente la nostra galleria con i lavori più
+          recenti.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
