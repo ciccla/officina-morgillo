@@ -112,14 +112,18 @@ export default function GalleriaPage() {
               <video
   controls
   playsInline
-  preload="none"
-  poster={`/galleria/video/thumbnails/${i + 1}.jpg`}
-  className="w-full h-auto object-cover rounded-2xl bg-black"
+  preload="metadata"
+  muted
+  className="w-full aspect-video object-cover rounded-2xl bg-black hover:opacity-90 transition"
+  onLoadedMetadata={(e) => {
+    const video = e.target;
+    video.currentTime = 0.1; // mostra subito il primo frame
+  }}
 >
   <source src={src} type="video/mp4" />
   <source src={src} type="video/webm" />
   <source src={src} type="video/quicktime" />
-  Il tuo browser non supporta i video HTML5.
+  Il tuo browser non supporta il video HTML5.
 </video>
 
               </div>
