@@ -1,0 +1,65 @@
+[
+  
+  
+  {
+    "id": 1,
+    "tipo": "vendita",
+    "nome": "Fiat 500 Lounge 1.2",
+    "descrizione": "Auto in perfette condizioni, anno 2019, 45.000 km, benzina, cambio manuale.",
+    "prezzo": "€ 9.500",
+    "img": "/vetrina/fiat500.jpg",
+    "dettagli": {
+      "anno": 2019,
+      "chilometri": "45.000 km",
+      "alimentazione": "Benzina",
+      "cambio": "Manuale",
+      "colore": "Bianco perlato",
+      "posti": 4,
+      "stato": "In offerta"
+    }
+  },
+  {
+    "id": 2,
+    "tipo": "noleggio",
+    "nome": "Volkswagen Golf 8 2.0 TDI",
+    "descrizione": "Noleggio giornaliero a partire da €70.",
+    "prezzo": "€ 70/giorno",
+    "img": "/vetrina/golf8.jpg",
+    "dettagli": {
+      "anno": 2023,
+      "cambio": "Automatico DSG",
+      "alimentazione": "Diesel",
+      "durata": "Da 1 a 30 giorni",
+      "stato": "Nuovo arrivo"
+    }
+  },
+  {
+    "id": 3,
+    "tipo": "ricambi",
+    "nome": "Cerchi in lega 18'' Audi",
+    "descrizione": "Set da 4 cerchi in lega originali Audi, ottime condizioni.",
+    "prezzo": "€ 400",
+    "img": "/vetrina/cerchi-audi.jpg",
+    "dettagli": {
+      "diametro": "18''",
+      "compatibilità": "Audi A3 / A4 / A5",
+      "materiale": "Alluminio",
+      "stato": "Usato garantito"
+    }
+  },
+  {
+    "id": 4,
+    "tipo": "noleggio",
+    "nome": "Audi Q3 Sportback 2.0 TDI quattro S line",
+    "descrizione": "Noleggio mensile a partire da €650+IVA.",
+    "prezzo": "€ 650+IVA/mese",
+    "img": "/vetrina/audiQ3.jpg",
+    "dettagli": {
+      "anno": 2023,
+      "cambio": "Automatico DSG",
+      "alimentazione": "Diesel",
+      "durata": "Mensile",
+      "stato": "Disponibile ora"
+    }
+  }
+]
