@@ -19,28 +19,18 @@ export default function Navbar() {
   const isHome = pathname === "/";
 
   const base =
-    "fixed top-0 left-0 w-full flex justify-between items-center px-5 md:px-10 py-4 z-50 transition-all duration-300";
-  const transparent =
-    "bg-transparent text-white " + (isScrolled ? "backdrop-blur-sm bg-black/40" : "");
-  const solid = "bg-white text-acc shadow-md";
+    "fixed top-0 left-0 w-full flex justify-between items-center px-5 md:px-10 py-4 z-50 transition-[background-color,backdrop-filter] duration-500 ease-in-out";
+
+  const navbarStyle = isScrolled
+    ? "backdrop-blur-sm bg-black/40 text-white"
+    : "bg-transparent text-white";
 
   return (
-<nav
-  className={`${base} transition-[background-color,backdrop-filter,color] duration-500 ease-in-out ${
-    isHome ? transparent : solid
-  }`}
->
+    <nav className={`${base} ${navbarStyle}`}>
       {/* LOGO */}
-      <h1
-        className={`text-xl sm:text-2xl font-semibold tracking-tight ${
-          isHome ? "text-white" : "text-bluMeccanico"
-        }`}
-      >
+      <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">
         <Link href="/">
-          Officina{" "}
-          <span className={isHome ? "text-blue-400" : "text-rossoAttrezzi"}>
-            Morgillo
-          </span>
+          Officina <span className="text-blue-400">Morgillo</span>
         </Link>
       </h1>
 
@@ -58,11 +48,7 @@ export default function Navbar() {
       {/* CTA DESKTOP */}
       <Link
         href="/contatti"
-        className={`hidden md:inline border px-6 py-2 rounded-full transition font-medium ${
-          isHome
-            ? "border-white hover:bg-white hover:text-black"
-            : "border-bluMeccanico text-bluMeccanico hover:bg-bluMeccanico hover:text-white"
-        }`}
+        className="hidden md:inline border border-white text-white hover:bg-white hover:text-black px-6 py-2 rounded-full transition font-medium"
       >
         Prenota ora
       </Link>

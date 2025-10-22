@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         {/* NAVBAR GLOBALE */}
         <Navbar />
 
-        {/* CONTENUTO PAGINA */}
+        {/* CONTENUTO DELLE PAGINE */}
         <main className="flex-grow">{children}</main>
 
         {/* FOOTER */}
