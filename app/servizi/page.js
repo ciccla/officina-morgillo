@@ -2,15 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Wrench, Zap, Cog, Car } from "lucide-react";
+import Navbar from "../components/Navbar"; // ✅ importa la navbar
 
 export default function ServiziPage() {
   return (
     <main className="relative w-full text-white bg-[#111418]">
       
-      {/* HERO con navbar trasparente */}
+      {/* HERO */}
       <section className="relative h-[85vh] flex flex-col justify-center items-center text-center">
-        
-        {/* Immagine di sfondo */}
         <Image
           src="/servizi-hero.jpg"
           alt="Officina Morgillo - Servizi di manutenzione e diagnosi auto"
@@ -18,33 +17,10 @@ export default function ServiziPage() {
           priority
           className="object-cover object-center"
         />
-
-        {/* Overlay più chiaro */}
         <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* NAVBAR immersiva */}
-        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-20">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <Link href="/">
-              Officina <span className="text-blue-400">Morgillo</span>
-            </Link>
-          </h1>
-
-          <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li><Link href="/servizi" className="hover:text-blue-400 transition">Servizi</Link></li>
-            <li><Link href="/chi-siamo" className="hover:text-blue-400 transition">Chi siamo</Link></li>
-            <li><Link href="/vetrina" className="hover:text-blue-400 transition">Vetrina</Link></li>
-            <li><Link href="/gallery" className="hover:text-blue-400 transition">Gallery</Link></li>
-            <li><Link href="/contatti" className="hover:text-blue-400 transition">Contatti</Link></li>
-          </ul>
-
-          <Link
-            href="/contatti"
-            className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        </nav>
+        {/* ✅ Navbar richiamata come componente */}
+        <Navbar />
 
         {/* TESTO HERO */}
         <div className="relative z-10 px-6 max-w-3xl mx-auto">
@@ -57,7 +33,6 @@ export default function ServiziPage() {
           </p>
         </div>
 
-        {/* sfumatura verso grigio tecnico */}
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#111418]"></div>
       </section>
 
