@@ -10,28 +10,21 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // effetto scroll per sfumatura dinamica
+  // Effetto di sfumatura allo scroll
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // logica pagina
-  const isHome = pathname === "/";
-
-  // base style sempre fixed e centrata
+  // Classi di base (navbar sempre fissa in alto)
   const baseClasses =
     "fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-6 z-50 transition-all duration-500";
 
-  // variazione di sfondo in base alla pagina e allo scroll
-  const dynamicStyle = isHome
-    ? isScrolled
-      ? "bg-black/60 backdrop-blur-sm text-white shadow-md"
-      : "bg-transparent text-white"
-    : isScrolled
-      ? "bg-[#0d0f12]/90 backdrop-blur-md text-white shadow-md"
-      : "bg-[#0d0f12]/70 text-white";
+  // Trasparente con effetto fade quando si scrolla
+  const dynamicStyle = isScrolled
+    ? "backdrop-blur-sm bg-black/50 shadow-md text-white"
+    : "bg-transparent text-white";
 
   return (
     <nav className={`${baseClasses} ${dynamicStyle}`}>
@@ -96,19 +89,17 @@ export default function Navbar() {
         </li>
       </ul>
 
-      {/* DESTRA — logica dinamica */}
+      {/* DESTRA: Prenota ora (solo desktop) + Hamburger (solo mobile) */}
       <div className="flex items-center gap-4">
-        {/* HOME → Bottone Prenota ora */}
-        {isHome && (
-          <Link
-            href="/contatti"
-            className="hidden md:inline-block border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        )}
+        {/* Bottone Prenota ora visibile solo su desktop */}
+        <Link
+          href="/contatti"
+          className="hidden md:inline-block border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
+        >
+          Prenota ora
+        </Link>
 
-        {/* ALTRE PAGINE → solo hamburger su mobile */}
+        {/* Hamburger visibile solo su mobile */}
         <button
           className="md:hidden text-2xl focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -119,7 +110,9 @@ export default function Navbar() {
 
       {/* MENU MOBILE */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#0d0f12]/95 text-white flex flex-col items-center gap-6 py-8 md:hidden shadow-lg z-40">
+        <div
+          className="absolute top-full left-0 w-full bg-[#0d0f12]/95 text-white flex flex-col items-center gap-6 py-8 md:hidden shadow-lg z-40 transition-all duration-300"
+        >
           <Link href="/servizi" onClick={() => setMenuOpen(false)}>
             Servizi
           </Link>
