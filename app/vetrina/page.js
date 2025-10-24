@@ -1,8 +1,9 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-"use client";
-import { useEffect, useState } from "react";
 
 export default function VetrinaPage() {
   const [vetrinaData, setVetrinaData] = useState([]);
