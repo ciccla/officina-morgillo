@@ -81,7 +81,6 @@ export default function ContattiPage() {
           </p>
         </div>
 
-        {/* Sfumatura verso la sezione successiva */}
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
@@ -189,7 +188,7 @@ export default function ContattiPage() {
           )}
           {success === false && (
             <p className="text-red-500 text-center mt-4">
-              ❌ Errore durante l'invio. Riprova più tardi.
+              ❌ Errore durante l&apos;invio. Riprova più tardi.
             </p>
           )}
         </form>

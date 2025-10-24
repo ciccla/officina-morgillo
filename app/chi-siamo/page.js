@@ -23,7 +23,7 @@ export default function ChiSiamoPage() {
             Chi <span className="text-blue-400">siamo</span>
           </h1>
           <p className="text-gray-200 text-lg md:text-xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
-            Dal 2010, la nostra officina è sinonimo di qualità, tecnologia e fiducia.
+            Dal 2010, la nostra officina &egrave; sinonimo di qualit&agrave;, tecnologia e fiducia.
           </p>
         </div>
 
@@ -35,11 +35,13 @@ export default function ChiSiamoPage() {
       <section className="max-w-6xl mx-auto px-6 md:px-12 py-20 text-center">
         <h2 className="text-3xl font-semibold mb-6 text-blue-400">La nostra storia</h2>
         <p className="text-gray-300 leading-relaxed max-w-4xl mx-auto text-lg">
-          Nata come piccola realtà artigianale a Sarno, <strong>Officina Morgillo</strong> è cresciuta nel tempo grazie
+          Nata come piccola realt&agrave; artigianale a Sarno,{" "}
+          <strong>Officina Morgillo</strong> &egrave; cresciuta nel tempo grazie
           alla dedizione e alla fiducia dei clienti.
           Oggi siamo un punto di riferimento per la manutenzione meccanica, la diagnostica elettronica
-          e l’assistenza su veicoli moderni, inclusi ibridi ed elettrici.
-          La nostra missione è unire <span className="text-blue-400">competenza tecnica</span> e{" "}
+          e l&apos;assistenza su veicoli moderni, inclusi ibridi ed elettrici.
+          La nostra missione &egrave; unire{" "}
+          <span className="text-blue-400">competenza tecnica</span> e{" "}
           <span className="text-blue-400">attenzione umana</span>,
           offrendo un servizio su misura per ogni cliente.
         </p>
@@ -53,7 +55,7 @@ export default function ChiSiamoPage() {
             <Wrench className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Affidabilità</h3>
             <p className="text-gray-400 text-sm">
-              Ogni intervento è eseguito con precisione e trasparenza, garantendo sicurezza e fiducia.
+              Ogni intervento &egrave; eseguito con precisione e trasparenza, garantendo sicurezza e fiducia.
             </p>
           </div>
           <div className="text-center">
@@ -67,14 +69,14 @@ export default function ChiSiamoPage() {
             <Shield className="w-12 h-12 text-green-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Professionalità</h3>
             <p className="text-gray-400 text-sm">
-              Un team qualificato, formato e appassionato, che mette al centro la qualità del servizio.
+              Un team qualificato, formato e appassionato, che mette al centro la qualit&agrave; del servizio.
             </p>
           </div>
           <div className="text-center">
             <Heart className="w-12 h-12 text-red-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Passione</h3>
             <p className="text-gray-400 text-sm">
-              Amiamo ciò che facciamo e trattiamo ogni veicolo come se fosse il nostro.
+              Amiamo ci&ograve; che facciamo e trattiamo ogni veicolo come se fosse il nostro.
             </p>
           </div>
         </div>
