@@ -7,7 +7,7 @@ export default function ChiSiamoPage() {
   return (
     <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
       {/* HERO */}
-      <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
+      <section className="relative h-[85vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
           src="/chi-siamo-hero.jpg"
           alt="Officina Morgillo - Chi siamo"
@@ -15,32 +15,10 @@ export default function ChiSiamoPage() {
           priority
           className="object-cover object-center opacity-60"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* NAVBAR */}
-        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-20">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <Link href="/">
-              Officina <span className="text-blue-400">Morgillo</span>
-            </Link>
-          </h1>
-          <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li><Link href="/servizi" className="hover:text-blue-400 transition">Servizi</Link></li>
-            <li><Link href="/chi-siamo" className="text-blue-400 font-semibold">Chi siamo</Link></li>
-            <li><Link href="/vetrina" className="hover:text-blue-400 transition">Vetrina</Link></li>
-            <li><Link href="/gallery" className="hover:text-blue-400 transition">Gallery</Link></li>
-            <li><Link href="/contatti" className="hover:text-blue-400 transition">Contatti</Link></li>
-          </ul>
-          <Link
-            href="/contatti"
-            className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        </nav>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* TESTO HERO */}
-        <div className="relative z-10 px-6 max-w-3xl mx-auto">
+        <div className="relative z-10 px-6 max-w-3xl mx-auto mt-12">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
             Chi <span className="text-blue-400">siamo</span>
           </h1>
@@ -48,6 +26,9 @@ export default function ChiSiamoPage() {
             Dal 2010, la nostra officina è sinonimo di qualità, tecnologia e fiducia.
           </p>
         </div>
+
+        {/* sfumatura verso la sezione successiva */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
       {/* STORIA */}
@@ -55,10 +36,11 @@ export default function ChiSiamoPage() {
         <h2 className="text-3xl font-semibold mb-6 text-blue-400">La nostra storia</h2>
         <p className="text-gray-300 leading-relaxed max-w-4xl mx-auto text-lg">
           Nata come piccola realtà artigianale a Sarno, <strong>Officina Morgillo</strong> è cresciuta nel tempo grazie
-          alla dedizione e alla fiducia dei clienti.  
+          alla dedizione e alla fiducia dei clienti.
           Oggi siamo un punto di riferimento per la manutenzione meccanica, la diagnostica elettronica
-          e l’assistenza su veicoli moderni, inclusi ibridi ed elettrici.  
-          La nostra missione è unire <span className="text-blue-400">competenza tecnica</span> e <span className="text-blue-400">attenzione umana</span>,
+          e l’assistenza su veicoli moderni, inclusi ibridi ed elettrici.
+          La nostra missione è unire <span className="text-blue-400">competenza tecnica</span> e{" "}
+          <span className="text-blue-400">attenzione umana</span>,
           offrendo un servizio su misura per ogni cliente.
         </p>
       </section>
@@ -103,7 +85,10 @@ export default function ChiSiamoPage() {
         <h2 className="text-3xl font-semibold mb-10 text-blue-400">Il nostro team</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform">
+            <div
+              key={i}
+              className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform"
+            >
               <div className="relative w-full h-72">
                 <Image
                   src={`/team/team${i}.jpg`}
