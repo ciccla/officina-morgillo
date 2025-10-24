@@ -5,10 +5,9 @@ import Link from "next/link";
 
 export default function VetrinaPage() {
   const [vetrinaData, setVetrinaData] = useState([]);
-  const [selected, setSelected] = useState(null); // per modale immagine
-  const [dettaglio, setDettaglio] = useState(null); // per modale dettagli
+  const [selected, setSelected] = useState(null); // immagine zoom
+  const [dettaglio, setDettaglio] = useState(null); // dettagli prodotto
 
-  // Caricamento dinamico del file JSON
   useEffect(() => {
     fetch("/data/vetrina.json")
       .then((res) => res.json())
@@ -21,77 +20,29 @@ export default function VetrinaPage() {
   return (
     <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
       {/* HERO */}
-      <section className="relative h-[70vh] flex flex-col justify-center items-center text-center overflow-hidden">
+      <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
           src="/vetrina/vetrina-hero.jpg"
           alt="Officina Morgillo - Vetrina auto e ricambi"
           fill
           priority
-          className="object-cover opacity-50"
+          className="object-cover object-center opacity-70"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* NAVBAR immersiva */}
-        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-20">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <Link href="/">
-              Officina <span className="text-blue-400">Morgillo</span>
-            </Link>
-          </h1>
-
-          <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li>
-              <Link href="/servizi" className="hover:text-blue-400 transition">
-                Servizi
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/chi-siamo"
-                className="hover:text-blue-400 transition"
-              >
-                Chi siamo
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/vetrina"
-                className="text-blue-400 font-semibold"
-              >
-                Vetrina
-              </Link>
-            </li>
-            <li>
-              <Link href="/gallery" className="hover:text-blue-400 transition">
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link href="/contatti" className="hover:text-blue-400 transition">
-                Contatti
-              </Link>
-            </li>
-          </ul>
-
-          <Link
-            href="/contatti"
-            className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        </nav>
-
-        <div className="relative z-10 px-6 max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            La <span className="text-blue-400">Vetrina</span> dell&apos;Officina
+        {/* TESTO HERO */}
+        <div className="relative z-10 px-6 max-w-3xl mx-auto mt-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
+            La <span className="text-blue-400">vetrina</span> dell&apos;Officina
             Morgillo
           </h1>
-          <p className="text-gray-200 text-lg md:text-xl">
+          <p className="text-gray-200 text-lg md:text-xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
             Scopri auto, ricambi e offerte speciali disponibili per vendita e
             noleggio.
           </p>
         </div>
 
+        {/* sfumatura verso la sezione successiva */}
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
@@ -127,7 +78,7 @@ export default function VetrinaPage() {
                   {prod.tipo.toUpperCase()}
                 </span>
 
-                {/* BADGE STATO (preso da prod.dettagli.stato) */}
+                {/* BADGE STATO */}
                 {prod.dettagli?.stato && (
                   <span
                     className={`absolute top-3 right-3 px-3 py-1 text-xs rounded-full font-semibold text-white ${

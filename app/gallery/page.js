@@ -1,4 +1,5 @@
-﻿import fs from "fs";
+﻿"use client";
+import fs from "fs";
 import path from "path";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,87 +25,79 @@ export default function GalleriaPage() {
 
   return (
     <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
+      
       {/* HERO */}
-      <section className="relative h-[70vh] flex flex-col justify-center items-center text-center overflow-hidden">
+      <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
           src="/servizi-hero.jpg"
           alt="Officina Morgillo - Galleria lavori"
           fill
           priority
-          className="object-cover opacity-50"
+          className="object-cover object-center opacity-70"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* overlay */}
+        <div className="absolute inset-0 bg-black/45"></div>
 
-        {/* NAVBAR immersiva */}
-        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-20">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <Link href="/">
-              Officina <span className="text-blue-400">Morgillo</span>
-            </Link>
-          </h1>
-
-          <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li>
-              <Link href="/servizi" className="hover:text-blue-400 transition">
-                Servizi
-              </Link>
-            </li>
-            <li>
-              <Link href="/chi-siamo" className="hover:text-blue-400 transition">
-                Chi siamo
-              </Link>
-            </li>
-            <li>
-              <Link href="/vetrina" className="hover:text-blue-400 transition">
-                Vetrina
-              </Link>
-            </li>
-            <li>
-              <Link href="/gallery" className="text-blue-400 font-semibold">
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link href="/contatti" className="hover:text-blue-400 transition">
-                Contatti
-              </Link>
-            </li>
-          </ul>
-
-          <Link
-            href="/contatti"
-            className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        </nav>
-
-        {/* Testo centrale */}
+        {/* TESTO CENTRALE */}
         <div className="relative z-10 px-6 max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
             La <span className="text-blue-400">galleria</span> dei nostri lavori
           </h1>
-          <p className="text-gray-200 text-lg md:text-xl">
+          <p className="text-gray-200 text-lg md:text-xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
             Scatti e video reali della nostra officina, dei nostri clienti e
             delle lavorazioni quotidiane.
           </p>
         </div>
 
+        {/* sfumatura verso la sezione successiva */}
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
-      {/* FOTO + VIDEO */}
-      <GalleryClient foto={foto} video={video} />
+      {/* SEZIONE GALLERIA */}
+      <section className="relative py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-semibold text-blue-400 mb-3">
+            I nostri migliori lavori
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Un viaggio tra interventi di meccanica, manutenzioni e restauri.
+            Tutte le immagini provengono direttamente dalla nostra officina.
+          </p>
+        </div>
 
-      {/* CTA */}
+        {/* FOTO + VIDEO */}
+        <GalleryClient foto={foto} video={video} />
+      </section>
+
+      {/* CTA INTERMEDIA */}
+      <section className="relative text-center py-20 bg-[#111418] px-6 md:px-12">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-semibold mb-4 text-white">
+            Professionalità e passione ogni giorno
+          </h2>
+          <p className="text-gray-300 mb-8 text-lg">
+            Ogni lavoro racconta una storia di dedizione e precisione. Dalla diagnosi
+            all’intervento, ogni dettaglio è curato per offrire prestazioni eccellenti.
+          </p>
+          <Link
+            href="/servizi"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition"
+          >
+            Scopri i nostri servizi
+          </Link>
+        </div>
+      </section>
+
+      {/* CTA FINALE */}
       <section className="text-center py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
         <h2 className="text-3xl font-semibold mb-4">
           Seguici per vedere altri lavori
         </h2>
         <p className="text-gray-100 mb-8">
           Aggiorniamo costantemente la nostra galleria con i lavori più
-          recenti.
+          recenti e le novità dal mondo dell’auto.
         </p>
+
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
             href="https://www.instagram.com/"

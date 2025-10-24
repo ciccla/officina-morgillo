@@ -61,46 +61,28 @@ export default function ContattiPage() {
   return (
     <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
       {/* HERO */}
-      <section className="relative h-[70vh] flex flex-col justify-center items-center text-center overflow-hidden">
+      <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
           src="/contatti-hero.jpg"
           alt="Officina Morgillo - Contatti"
           fill
           priority
-          className="object-cover opacity-50"
+          className="object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* NAVBAR */}
-        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-20">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <Link href="/">
-              Officina <span className="text-blue-400">Morgillo</span>
-            </Link>
-          </h1>
-          <ul className="hidden md:flex gap-8 text-sm font-medium">
-            <li><Link href="/servizi" className="hover:text-blue-400 transition">Servizi</Link></li>
-            <li><Link href="/chi-siamo" className="hover:text-blue-400 transition">Chi siamo</Link></li>
-            <li><Link href="/vetrina" className="hover:text-blue-400 transition">Vetrina</Link></li>
-            <li><Link href="/gallery" className="hover:text-blue-400 transition">Gallery</Link></li>
-            <li><Link href="/contatti" className="text-blue-400 font-semibold">Contatti</Link></li>
-          </ul>
-          <Link
-            href="/contatti"
-            className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
-          >
-            Prenota ora
-          </Link>
-        </nav>
-
-        <div className="relative z-10 px-6 max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+        {/* TESTO HERO */}
+        <div className="relative z-10 px-6 max-w-3xl mx-auto mt-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
             Contattaci
           </h1>
-          <p className="text-gray-200 text-lg md:text-xl">
+          <p className="text-gray-200 text-lg md:text-xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
             Siamo sempre a disposizione per richieste, preventivi o assistenza.
           </p>
         </div>
+
+        {/* Sfumatura verso la sezione successiva */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#0d0f12]" />
       </section>
 
       {/* SEZIONE INFO */}
@@ -118,7 +100,11 @@ export default function ContattiPage() {
               +39 081 123 4567
             </a>
             <br />
-            <a href="https://wa.me/390811234567" target="_blank" className="hover:text-blue-400 transition">
+            <a
+              href="https://wa.me/390811234567"
+              target="_blank"
+              className="hover:text-blue-400 transition"
+            >
               Chatta su WhatsApp
             </a>
           </p>
@@ -203,7 +189,7 @@ export default function ContattiPage() {
           )}
           {success === false && (
             <p className="text-red-500 text-center mt-4">
-              ❌ Errore durante l&apos;invio. Riprova più tardi.
+              ❌ Errore durante l'invio. Riprova più tardi.
             </p>
           )}
         </form>

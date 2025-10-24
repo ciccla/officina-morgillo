@@ -2,44 +2,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Wrench, Zap, Cog, Car } from "lucide-react";
-import Navbar from "../components/Navbar"; // ✅ importa la navbar
 
 export default function ServiziPage() {
   return (
     <main className="relative w-full text-white bg-[#111418]">
-      
+
       {/* HERO */}
-      <section className="relative h-[85vh] flex flex-col justify-center items-center text-center">
+      <section className="relative h-[85vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
           src="/servizi-hero.jpg"
           alt="Officina Morgillo - Servizi di manutenzione e diagnosi auto"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-center opacity-70"
         />
-        <div className="absolute inset-0 bg-black/50"></div>
-
-        {/* ✅ Navbar richiamata come componente */}
-        <Navbar />
+        <div className="absolute inset-0 bg-black/40"></div>
 
         {/* TESTO HERO */}
-        <div className="relative z-10 px-6 max-w-3xl mx-auto">
+        <div className="relative z-10 px-6 max-w-3xl mx-auto mt-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
             I nostri <span className="text-blue-400">servizi</span>
           </h1>
           <p className="text-gray-200 text-lg md:text-xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
-            Tecnologia, precisione e passione per la tua auto.<br />
+            Tecnologia, precisione e passione per la tua auto. <br />
             Dal 2010 al servizio della qualità e dell’innovazione.
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#111418]"></div>
+        {/* sfumatura verso la sezione successiva */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#111418]" />
       </section>
 
       {/* SEZIONE SERVIZI */}
       <section className="relative text-gray-100 py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          
+
           {/* Meccanica generale */}
           <div className="bg-[#1A1E23] rounded-2xl shadow-xl p-8 text-center transition-transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-transparent hover:border-blue-500">
             <Wrench className="w-14 h-14 text-blue-500 mx-auto mb-4" />
@@ -84,7 +81,9 @@ export default function ServiziPage() {
 
       {/* CTA finale */}
       <section className="text-center py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
-        <h2 className="text-3xl font-semibold mb-4">Hai bisogno di assistenza immediata?</h2>
+        <h2 className="text-3xl font-semibold mb-4">
+          Hai bisogno di assistenza immediata?
+        </h2>
         <p className="text-gray-100 mb-8">
           Contattaci subito per un preventivo gratuito o prenota un intervento con i nostri tecnici.
         </p>
