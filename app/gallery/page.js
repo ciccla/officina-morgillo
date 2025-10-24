@@ -1,31 +1,37 @@
-﻿"use client";
-import fs from "fs";
-import path from "path";
+﻿// app/gallery/page.js
 import Image from "next/image";
 import Link from "next/link";
 import GalleryClient from "./GalleryClient";
+import fs from "fs";
+import path from "path";
 
-export default function GalleriaPage() {
-  // Percorsi alle cartelle pubbliche
+export const dynamic = "force-static"; // ✅ build statica su Vercel
+
+// ---- Funzione server-side per leggere i file ----
+async function getGalleryData() {
   const fotoDir = path.join(process.cwd(), "public", "galleria", "foto");
   const videoDir = path.join(process.cwd(), "public", "galleria", "video");
 
-  // Legge i file presenti nelle cartelle (solo lato server)
   const fotoFiles = fs.existsSync(fotoDir)
-    ? fs.readdirSync(fotoDir).filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
+    ? fs.readdirSync(fotoDir).filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f))
     : [];
 
   const videoFiles = fs.existsSync(videoDir)
-    ? fs.readdirSync(videoDir).filter(v => /\.(mp4|mov|webm)$/i.test(v))
+    ? fs.readdirSync(videoDir).filter((v) => /\.(mp4|mov|webm)$/i.test(v))
     : [];
 
-  // Percorsi pubblici
-  const foto = fotoFiles.map(name => `/galleria/foto/${name}`);
-  const video = videoFiles.map(name => `/galleria/video/${name}`);
+  return {
+    foto: fotoFiles.map((name) => `/galleria/foto/${name}`),
+    video: videoFiles.map((name) => `/galleria/video/${name}`),
+  };
+}
+
+// ---- Componente principale ----
+export default async function GalleriaPage() {
+  const { foto, video } = await getGalleryData();
 
   return (
     <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
-      
       {/* HERO */}
       <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
@@ -35,7 +41,6 @@ export default function GalleriaPage() {
           priority
           className="object-cover object-center opacity-70"
         />
-        {/* overlay */}
         <div className="absolute inset-0 bg-black/45"></div>
 
         {/* TESTO CENTRALE */}
