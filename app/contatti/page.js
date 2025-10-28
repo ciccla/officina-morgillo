@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
+import { FaWhatsapp, FaClock, FaMapMarkerAlt } from "react-icons/fa"; // 👈 icone reali
 
 export default function ContattiPage() {
   const [formData, setFormData] = useState({
@@ -71,7 +72,6 @@ export default function ContattiPage() {
         />
         <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* TESTO HERO */}
         <div className="relative z-10 px-6 max-w-3xl mx-auto mt-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]">
             Contattaci
@@ -86,30 +86,48 @@ export default function ContattiPage() {
 
       {/* SEZIONE INFO */}
       <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6 py-20 text-center">
+        {/* INDIRIZZO */}
         <div>
-          <h3 className="text-blue-400 text-xl font-semibold mb-2">📍 Indirizzo</h3>
+          <h3 className="flex justify-center items-center gap-2 text-blue-400 text-xl font-semibold mb-2">
+            <FaMapMarkerAlt size={22} /> Indirizzo
+          </h3>
           <p className="text-gray-300">
-            Via Roma 123, Sarno (SA) <br /> 84087 – Italia
+            <a
+              href="https://maps.app.goo.gl/d9BdrHYbug1YMXv88"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition"
+            >
+              Via Voscone 24, Sarno (SA)
+            </a>
+            <br /> 84087 – Italia
           </p>
         </div>
+
+        {/* WHATSAPP */}
         <div>
-          <h3 className="text-blue-400 text-xl font-semibold mb-2">📞 Telefono / WhatsApp</h3>
+          <h3 className="flex justify-center items-center gap-2 text-green-500 text-xl font-semibold mb-2">
+            <FaWhatsapp size={24} /> WhatsApp
+          </h3>
           <p className="text-gray-300">
-            <a href="tel:+390811234567" className="hover:text-blue-400 transition">
-              +39 081 123 4567
-            </a>
-            <br />
             <a
               href="https://wa.me/390811234567"
               target="_blank"
-              className="hover:text-blue-400 transition"
+              rel="noopener noreferrer"
+              className="hover:text-green-400 transition"
             >
-              Chatta su WhatsApp
+              Chatta con noi su WhatsApp
             </a>
+            <br />
+            <span className="text-gray-400">+39 081 123 4567</span>
           </p>
         </div>
+
+        {/* ORARI */}
         <div>
-          <h3 className="text-blue-400 text-xl font-semibold mb-2">⏰ Orari</h3>
+          <h3 className="flex justify-center items-center gap-2 text-blue-400 text-xl font-semibold mb-2">
+            <FaClock size={22} /> Orari
+          </h3>
           <p className="text-gray-300">
             Lun - Ven: 8:30 – 18:30 <br /> Sabato: 8:30 – 13:00
           </p>
@@ -198,7 +216,7 @@ export default function ContattiPage() {
       <section className="w-full">
         <iframe
           title="Officina Morgillo - Mappa"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.7499099753633!2d14.62243691561872!3d40.8099638793211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0e0184fd7a33%3A0x12a7c43b1e985a57!2sSarno%2C%20SA!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.695992770431!2d14.6205314!3d40.8109356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0e01b7e9bba7%3A0xe90cb3b9dc0f7e12!2sVia%20Voscone%2C%2024%2C%2084087%20Sarno%20SA!5e0!3m2!1sit!2sit!4v1730130000000!5m2!1sit!2sit"
           width="100%"
           height="400"
           allowFullScreen
