@@ -22,7 +22,11 @@ const poppins = Poppins({
 export const metadata = {
   title: "Officina Morgillo",
   description: "Tecnologia e passione per la tua auto.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
