@@ -31,6 +31,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="it" suppressHydrationWarning>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
       <body
         className={`${poppins.className} bg-biancoTec text-acc min-h-screen flex flex-col`}
       >
