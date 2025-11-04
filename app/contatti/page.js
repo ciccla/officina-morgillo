@@ -1,12 +1,20 @@
 ﻿"use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaWhatsapp, FaClock, FaMapMarkerAlt, FaArrowRight, FaSpinner, FaCar } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaClock,
+  FaMapMarkerAlt,
+  FaArrowRight,
+  FaSpinner,
+  FaCheckCircle,
+} from "react-icons/fa";
 
 export default function ContattiPage() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const [formData, setFormData] = useState({
     nome: "",
@@ -40,6 +48,7 @@ export default function ContattiPage() {
       if (!res.ok) throw new Error("Errore invio email");
 
       setSuccess(true);
+      setShowOverlay(true);
       setFormData({
         nome: "",
         email: "",
@@ -62,8 +71,18 @@ export default function ContattiPage() {
     }
   };
 
+  // Nasconde overlay dopo 2.5s
+  useEffect(() => {
+    if (showOverlay) {
+      const timer = setTimeout(() => setShowOverlay(false), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [showOverlay]);
+
+  const progressWidth = step === 1 ? "50%" : "100%";
+
   return (
-    <main className="relative w-full min-h-screen bg-[#0d0f12] text-white">
+    <main className="relative w-full min-h-screen bg-[#0d0f12] text-white overflow-hidden">
       {/* HERO */}
       <section className="relative h-[80vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
@@ -105,7 +124,7 @@ export default function ContattiPage() {
         </div>
         <div>
           <h3 className="flex justify-center items-center gap-2 text-green-500 text-xl font-semibold mb-2">
-            WhatsApp
+            <FaWhatsapp size={22} /> WhatsApp
           </h3>
           <p className="text-gray-300">
             <a
@@ -130,11 +149,19 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      {/* FORM COMPLETO MULTI-STEP */}
+      {/* FORM MULTI-STEP */}
       <section className="max-w-3xl mx-auto px-6 pb-20">
         <h2 className="text-3xl font-semibold text-blue-400 mb-8 text-center">
           Invia la tua richiesta
         </h2>
+
+        {/* Progress bar */}
+        <div className="w-full bg-[#1a1e23] rounded-full h-2 mb-6">
+          <div
+            className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+            style={{ width: progressWidth }}
+          ></div>
+        </div>
 
         <form
           onSubmit={handleSubmit}
@@ -194,7 +221,6 @@ export default function ContattiPage() {
                 <option value="info">Informazioni generali</option>
               </select>
 
-              {/* Campi specifici per tipo */}
               {(formData.oggetto === "prenotazione" ||
                 formData.oggetto === "guasto") && (
                 <>
@@ -225,6 +251,31 @@ export default function ContattiPage() {
                     required
                     className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
                   />
+
+                  {formData.oggetto === "guasto" && (
+                    <select
+                      name="servizio"
+                      value={formData.servizio}
+                      onChange={handleChange}
+                      required
+                      className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">
+                        -- Tipo di intervento richiesto --
+                      </option>
+                      <option value="Soccorso stradale">
+                        Soccorso stradale
+                      </option>
+                      <option value="Traino in officina">
+                        Traino in officina
+                      </option>
+                      <option value="Riparazione sul posto">
+                        Riparazione sul posto
+                      </option>
+                      <option value="Diagnosi in sede">Diagnosi in sede</option>
+                    </select>
+                  )}
+
                   <input
                     type="date"
                     name="data"
@@ -307,11 +358,6 @@ export default function ContattiPage() {
             </div>
           )}
 
-          {success === true && (
-            <p className="text-green-500 text-center mt-4 animate-fadeIn">
-              ✅ Richiesta inviata con successo! Ti ricontatteremo per conferma.
-            </p>
-          )}
           {success === false && (
             <p className="text-red-500 text-center mt-4 animate-fadeIn">
               ❌ Errore durante l’invio. Riprova tra qualche minuto.
@@ -332,6 +378,38 @@ export default function ContattiPage() {
           className="border-0"
         ></iframe>
       </section>
+
+      {/* ✅ OVERLAY SUCCESSO ANIMATO */}
+      {showOverlay && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fadeIn">
+          <div className="relative flex flex-col items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-blue-600/30 border-4 border-blue-400 animate-ping absolute"></div>
+            <FaCheckCircle
+              className="text-green-500 z-10 animate-scaleIn"
+              size={64}
+            />
+            <p className="mt-6 text-lg text-gray-200 font-medium animate-fadeIn">
+              Richiesta inviata con successo!
+            </p>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes scaleIn {
+          from {
+            transform: scale(0);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.5s ease forwards;
+        }
+      `}</style>
     </main>
   );
 }
