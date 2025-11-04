@@ -128,7 +128,7 @@ export default function ContattiPage() {
           </h3>
           <p className="text-gray-300">
             <a
-              href="https://wa.me/393400000000?text=Ciao%20Officina%20Morgillo,%20ho%20bisogno%20di%20assistenza!"
+              href="https://wa.me/393508754465?text=Ciao%20Officina%20Morgillo,%20ho%20bisogno%20di%20assistenza!"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-400 transition"
@@ -136,7 +136,7 @@ export default function ContattiPage() {
               Chatta con noi su WhatsApp
             </a>
             <br />
-            <span className="text-gray-400">+39 340 000 0000</span>
+            <span className="text-gray-400">+39 350 875 4465</span>
           </p>
         </div>
         <div>
