@@ -7,7 +7,7 @@ export async function POST(req) {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
-      secure: false,
+      secure: false, // per porta 587 deve restare false
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -49,10 +49,11 @@ export async function POST(req) {
 
     await transporter.sendMail(mailOptions);
     return new Response(JSON.stringify({ success: true }), { status: 200 });
-  } catch (error) {
-    console.error("Errore invio email:", error);
-    return new Response(JSON.stringify({ success: false, error }), {
-      status: 500,
-    });
+    } catch (error) {
+    console.error("🔥 Errore invio email dettagliato:", error);
+    return new Response(
+      JSON.stringify({ success: false, error: error.message }),
+      { status: 500 }
+    );
+    }
   }
-}
