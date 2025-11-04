@@ -1,28 +1,26 @@
 ﻿"use client";
 import { useState } from "react";
 import Image from "next/image";
-import emailjs from "@emailjs/browser";
-import {
-  FaWhatsapp,
-  FaClock,
-  FaMapMarkerAlt,
-  FaArrowRight,
-  FaSpinner,
-} from "react-icons/fa";
+import { FaWhatsapp, FaClock, FaMapMarkerAlt, FaArrowRight, FaSpinner, FaCar } from "react-icons/fa";
 
 export default function ContattiPage() {
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(null);
+
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
     telefono: "",
     oggetto: "",
     servizio: "",
+    marca: "",
+    modello: "",
+    targa: "",
     data: "",
+    fascia_oraria: "",
     messaggio: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,49 +31,14 @@ export default function ContattiPage() {
     setSuccess(null);
 
     try {
-      // 1️⃣ Invia email all'officina
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        "template_officina",
-        formData,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      );
+      const res = await fetch("/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      // 2️⃣ Prepara risposta automatica per il cliente
-      let messaggio_risposta = "";
-      switch (formData.oggetto) {
-        case "preventivo":
-          messaggio_risposta =
-            "Grazie per la tua richiesta di preventivo! Ti invieremo una proposta personalizzata entro 24 ore.";
-          break;
-        case "prenotazione":
-          messaggio_risposta =
-            "Grazie per aver richiesto una prenotazione! Ti contatteremo a breve per confermare data e orario dell’intervento.";
-          break;
-        case "guasto":
-          messaggio_risposta =
-            "Abbiamo ricevuto la segnalazione del guasto. Ti ricontatteremo al più presto per valutare l’intervento più rapido e conveniente.";
-          break;
-        default:
-          messaggio_risposta =
-            "Grazie per averci contattato. Il nostro team ti risponderà al più presto!";
-          break;
-      }
+      if (!res.ok) throw new Error("Errore invio email");
 
-      // 3️⃣ Invia risposta automatica al cliente
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        "template_cliente",
-        {
-          nome: formData.nome,
-          email: formData.email,
-          oggetto: formData.oggetto,
-          messaggio_risposta,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      );
-
-      setLoading(false);
       setSuccess(true);
       setFormData({
         nome: "",
@@ -83,14 +46,19 @@ export default function ContattiPage() {
         telefono: "",
         oggetto: "",
         servizio: "",
+        marca: "",
+        modello: "",
+        targa: "",
         data: "",
+        fascia_oraria: "",
         messaggio: "",
       });
       setStep(1);
-    } catch (error) {
-      console.error("Errore:", error);
-      setLoading(false);
+    } catch (err) {
+      console.error(err);
       setSuccess(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,8 +79,7 @@ export default function ContattiPage() {
             Contattaci
           </h1>
           <p className="text-gray-200 text-lg md:text-xl">
-            Il modo più veloce per ricevere assistenza, preventivi o prenotare
-            un intervento.
+            Prenota un intervento, richiedi un preventivo o segnala un guasto.
           </p>
         </div>
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-[#0d0f12]" />
@@ -163,7 +130,7 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      {/* FORM MODERNO MULTI-STEP */}
+      {/* FORM COMPLETO MULTI-STEP */}
       <section className="max-w-3xl mx-auto px-6 pb-20">
         <h2 className="text-3xl font-semibold text-blue-400 mb-8 text-center">
           Invia la tua richiesta
@@ -182,7 +149,7 @@ export default function ContattiPage() {
                 onChange={handleChange}
                 required
                 placeholder="Nome e cognome"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="email"
@@ -191,7 +158,7 @@ export default function ContattiPage() {
                 onChange={handleChange}
                 required
                 placeholder="Email"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="text"
@@ -199,7 +166,7 @@ export default function ContattiPage() {
                 value={formData.telefono}
                 onChange={handleChange}
                 placeholder="Telefono (facoltativo)"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
               />
               <button
                 type="button"
@@ -218,7 +185,7 @@ export default function ContattiPage() {
                 value={formData.oggetto}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">-- Seleziona il tipo di richiesta --</option>
                 <option value="preventivo">Richiesta preventivo</option>
@@ -227,27 +194,36 @@ export default function ContattiPage() {
                 <option value="info">Informazioni generali</option>
               </select>
 
-              {formData.oggetto === "preventivo" && (
-                <input
-                  type="text"
-                  name="servizio"
-                  placeholder="Tipo di intervento (es. tagliando, cambio olio...)"
-                  value={formData.servizio}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              )}
-              {formData.oggetto === "prenotazione" && (
+              {/* Campi specifici per tipo */}
+              {(formData.oggetto === "prenotazione" ||
+                formData.oggetto === "guasto") && (
                 <>
                   <input
                     type="text"
-                    name="servizio"
-                    placeholder="Servizio richiesto"
-                    value={formData.servizio}
+                    name="marca"
+                    placeholder="Marca veicolo (es. BMW)"
+                    value={formData.marca}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="text"
+                    name="modello"
+                    placeholder="Modello veicolo (es. Serie 3)"
+                    value={formData.modello}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="text"
+                    name="targa"
+                    placeholder="Targa (es. AB123CD)"
+                    value={formData.targa}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
                   />
                   <input
                     type="date"
@@ -255,7 +231,44 @@ export default function ContattiPage() {
                     value={formData.data}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                  />
+                  <select
+                    name="fascia_oraria"
+                    value={formData.fascia_oraria}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">-- Fascia oraria preferita --</option>
+                    <option value="Mattina (8:30 - 12:30)">
+                      Mattina (8:30 - 12:30)
+                    </option>
+                    <option value="Pomeriggio (14:00 - 18:00)">
+                      Pomeriggio (14:00 - 18:00)
+                    </option>
+                  </select>
+                </>
+              )}
+
+              {formData.oggetto === "preventivo" && (
+                <>
+                  <input
+                    type="text"
+                    name="servizio"
+                    placeholder="Tipo di intervento (es. tagliando, cambio olio...)"
+                    value={formData.servizio}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="text"
+                    name="modello"
+                    placeholder="Modello veicolo"
+                    value={formData.modello}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
                   />
                 </>
               )}
@@ -265,8 +278,8 @@ export default function ContattiPage() {
                 rows="5"
                 value={formData.messaggio}
                 onChange={handleChange}
-                placeholder="Scrivi qui il tuo messaggio..."
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Note o messaggio aggiuntivo..."
+                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
               />
 
               <div className="flex justify-between">
@@ -287,7 +300,7 @@ export default function ContattiPage() {
                       <FaSpinner className="animate-spin" /> Invio...
                     </>
                   ) : (
-                    "Invia messaggio"
+                    "Invia richiesta"
                   )}
                 </button>
               </div>
@@ -296,7 +309,7 @@ export default function ContattiPage() {
 
           {success === true && (
             <p className="text-green-500 text-center mt-4 animate-fadeIn">
-              ✅ Messaggio inviato con successo! Ti contatteremo al più presto.
+              ✅ Richiesta inviata con successo! Ti ricontatteremo per conferma.
             </p>
           )}
           {success === false && (
