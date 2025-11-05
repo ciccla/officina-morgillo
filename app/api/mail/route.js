@@ -8,8 +8,8 @@ const BRAND = {
   from: "Officina Morgillo <info@officinamorgillo.com>",
   to: "info@officinamorgillo.com",             // ricezione interna
   siteUrl: "https://officinamorgillo.com",     // se vuoi, metti il tuo dominio
-  phone: "+39 340 000 0000",
-  whatsapp: "https://wa.me/393400000000?text=Ciao%20Officina%20Morgillo%2C%20ho%20bisogno%20di%20assistenza!",
+  phone: "+39 350 875 4465",
+  whatsapp: "https://wa.me/393508754465?text=Ciao%20Officina%20Morgillo%2C%20ho%20bisogno%20di%20assistenza!",
   address: "Via Voscone 24, 84087 Sarno (SA)",
   colorPrimary: "#2563EB",  // blu
   bgDark: "#0d0f12",
