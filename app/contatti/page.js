@@ -18,6 +18,7 @@ export default function ContattiPage() {
 
   const [formData, setFormData] = useState({
     nome: "",
+    cognome: "",
     email: "",
     telefono: "",
     oggetto: "",
@@ -167,43 +168,88 @@ export default function ContattiPage() {
           onSubmit={handleSubmit}
           className="space-y-6 bg-[#1a1e23] p-8 rounded-2xl shadow-lg border border-[#222]"
         >
-          {step === 1 && (
-            <div className="space-y-4 animate-fadeIn">
-              <input
-                type="text"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                required
-                placeholder="Nome e cognome"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="Email"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="text"
-                name="telefono"
-                value={formData.telefono}
-                onChange={handleChange}
-                placeholder="Telefono (facoltativo)"
-                className="w-full p-3 rounded-lg bg-[#0d0f12] text-white focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-full font-semibold flex justify-center items-center gap-2"
-              >
-                Avanti <FaArrowRight />
-              </button>
-            </div>
-          )}
+         {step === 1 && (
+  <div className="space-y-5 animate-fadeIn">
+    {/* NOME */}
+    <input
+      type="text"
+      name="nome"
+      value={formData.nome}
+      onChange={handleChange}
+      required
+      placeholder="Nome"
+      className="w-full p-3 rounded-lg bg-[#0d0f12] border border-[#2a2e35] text-white focus:ring-2 focus:ring-blue-500"
+      pattern="^[A-Za-zÀ-ÿ\s]{2,}$"
+      title="Inserisci solo lettere (almeno 2 caratteri)"
+    />
+
+    {/* COGNOME */}
+    <input
+      type="text"
+      name="cognome"
+      value={formData.cognome || ""}
+      onChange={handleChange}
+      required
+      placeholder="Cognome"
+      className="w-full p-3 rounded-lg bg-[#0d0f12] border border-[#2a2e35] text-white focus:ring-2 focus:ring-blue-500"
+      pattern="^[A-Za-zÀ-ÿ\s]{2,}$"
+      title="Inserisci solo lettere (almeno 2 caratteri)"
+    />
+
+    {/* EMAIL */}
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      required
+      placeholder="Email (es. nome@email.com)"
+      className="w-full p-3 rounded-lg bg-[#0d0f12] border border-[#2a2e35] text-white focus:ring-2 focus:ring-blue-500"
+    />
+
+    {/* TELEFONO */}
+    <div className="flex items-center bg-[#0d0f12] border border-[#2a2e35] rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+      <span className="px-3 text-gray-400 select-none">+39</span>
+      <input
+        type="tel"
+        name="telefono"
+        value={formData.telefono}
+        onChange={(e) => {
+          const value = e.target.value.replace(/[^0-9]/g, "");
+          setFormData({ ...formData, telefono: value });
+        }}
+        required
+        placeholder="Numero di telefono"
+        className="flex-1 p-3 bg-transparent text-white outline-none"
+        pattern="^[0-9]{8,12}$"
+        title="Inserisci un numero valido (8-12 cifre)"
+      />
+    </div>
+
+    {/* AVANTI */}
+    <button
+      type="button"
+      onClick={() => setStep(2)}
+      disabled={
+        !formData.nome ||
+        !formData.cognome ||
+        !formData.email ||
+        !formData.telefono.match(/^[0-9]{8,12}$/)
+      }
+      className={`w-full transition py-3 rounded-full font-semibold flex justify-center items-center gap-2 ${
+        !formData.nome ||
+        !formData.cognome ||
+        !formData.email ||
+        !formData.telefono.match(/^[0-9]{8,12}$/)
+          ? "bg-gray-600 cursor-not-allowed"
+          : "bg-blue-600 hover:bg-blue-700"
+      }`}
+    >
+      Avanti <FaArrowRight />
+    </button>
+  </div>
+)}
+
 
           {step === 2 && (
             <div className="space-y-4 animate-fadeIn">

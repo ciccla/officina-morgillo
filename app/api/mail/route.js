@@ -103,9 +103,20 @@ function baseShell({ title, subtitle, content, footerNote }) {
 }
 
 function emailToOffice(data) {
+  const telefonoLink = data.telefono
+    ? `https://wa.me/${data.telefono.replace(/[^0-9]/g, '')}?text=Ciao%20${encodeURIComponent(
+        `${data.nome || ''} ${data.cognome || ''}`
+      )},%20riguardo%20la%20tua%20richiesta%20dal%20sito%20Officina%20Morgillo...`
+    : BRAND.whatsapp;
+
+  const emailLink = data.email
+    ? `mailto:${data.email}?subject=Risposta%20alla%20tua%20richiesta%20Officina%20Morgillo`
+    : `mailto:info@officinamorgillo.com`;
+
   const table = `
     <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border:1px solid #232832;border-radius:14px;overflow:hidden">
       ${fieldRow("Nome", data.nome)}
+      ${fieldRow("Cognome", data.cognome)}
       ${fieldRow("Email", data.email)}
       ${fieldRow("Telefono", data.telefono)}
       ${fieldRow("Oggetto", data.oggetto)}
@@ -124,27 +135,28 @@ function emailToOffice(data) {
           : ""
       }
     </table>
-    <div style="margin-top:18px">
-      <a class="cta" href="mailto:${encodeURIComponent(data.email || "noreply@invalid")}" 
-         style="display:inline-block;background:${BRAND.colorPrimary};color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;margin-right:8px">
-         Rispondi al cliente
+    <div style="margin-top:18px;text-align:center;">
+      <a href="${telefonoLink}" 
+         style="display:inline-block;background:#25D366;color:white;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;margin-right:10px;">
+         💬 Apri WhatsApp del cliente
       </a>
-      <a class="cta" href="${BRAND.whatsapp}" 
-         style="display:inline-block;border:1px solid #2b7a4b;color:#d5fbe1;background:rgba(16,185,129,.08);text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px">
-         Apri WhatsApp
+      <a href="${emailLink}" 
+         style="display:inline-block;background:#2563EB;color:white;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;">
+         ✉️ Rispondi via Email
       </a>
     </div>
   `;
 
   return baseShell({
-    title: "Nuova richiesta dal sito",
+    title: `Nuova richiesta da ${data.nome || ''} ${data.cognome || ''}`,
     subtitle:
-      "Hai ricevuto un nuovo contatto dal form 'Contattaci'. Di seguito i dettagli completi.",
+      "Hai ricevuto una nuova prenotazione o richiesta di contatto. Di seguito i dettagli inviati dal cliente:",
     content: table,
     footerNote:
-      "Suggerimento: rispondi direttamente a questa mail per contattare il cliente. La richiesta è stata registrata automaticamente.",
+      "Puoi contattare direttamente il cliente cliccando sui pulsanti sopra per rispondere via email o WhatsApp.",
   });
 }
+
 
 function emailToCustomer(data) {
   const intro = `
@@ -184,7 +196,7 @@ function emailToCustomer(data) {
   `;
 
   return baseShell({
-    title: "Abbiamo ricevuto la tua richiesta ✅",
+title: `Abbiamo ricevuto la tua richiesta, ${data.nome || ''} ${data.cognome || ''} ✅`,
     subtitle:
       "Questo è un messaggio di conferma automatico. Ti ricontatteremo a breve con tutti i dettagli.",
     content: `${intro}${table}${ctas}`,
@@ -197,11 +209,14 @@ export async function POST(req) {
   try {
     const data = await req.json();
 
+
     // Invia all'officina
+  
+    const dataOra = new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome" });
     const adminPromise = resend.emails.send({
       from: BRAND.from,
       to: [BRAND.to],
-      subject: `📩 Nuova richiesta da ${data.nome || "Sito"}`,
+      subject: `📩 Nuova richiesta da ${data.nome || ''} ${data.cognome || ''} — ${data.oggetto?.toUpperCase() || 'Richiesta'} (${dataOra})`,
       html: emailToOffice(data),
       reply_to: data.email ? [data.email] : undefined,
     });
@@ -211,7 +226,7 @@ export async function POST(req) {
       ? resend.emails.send({
           from: BRAND.from,
           to: [data.email],
-          subject: "Abbiamo ricevuto la tua richiesta — Officina Morgillo",
+          subject: `✅ ${data.nome || ''} ${data.cognome || ''}, la tua richiesta è stata ricevuta — Officina Morgillo`,
           html: emailToCustomer(data),
         })
       : Promise.resolve();
