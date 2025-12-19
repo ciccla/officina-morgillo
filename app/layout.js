@@ -99,11 +99,12 @@ export default function RootLayout({ children }) {
                 <li className="flex items-center gap-2">
                   <FaPhoneAlt className="text-blue-400" />
                   <a
-                    href="tel:+390811234567"
+                    href="tel:+393508754465"
                     className="hover:text-blue-400 transition"
                   >
-                    +39 081 123 4567
+                    +39 350 875 4465
                   </a>
+
                 </li>
                 <li className="flex items-center gap-2">
                   <FaEnvelope className="text-blue-400" />
