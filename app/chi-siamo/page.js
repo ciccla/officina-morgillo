@@ -82,20 +82,21 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      {/* TEAM */}
-<section className="py-20 px-6 md:px-12 text-center">
+      <section className="py-20 px-6 md:px-12 text-center">
   <h2 className="text-3xl font-semibold mb-10 text-blue-400">
     Il nostro team
   </h2>
 
-  <div className="grid sm:grid-cols-2 gap-10 max-w-4xl mx-auto">
-    {/* Responsabile Tecnico */}
+  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+
+    {/* Team 1 */}
     <div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg">
       <div className="relative w-full h-72">
         <Image
           src="/team/team1.jpg"
           alt="Responsabile Tecnico Officina Morgillo"
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />
       </div>
@@ -110,13 +111,14 @@ export default function ChiSiamoPage() {
       </div>
     </div>
 
-    {/* Responsabile Officina */}
+    {/* Team 2 */}
     <div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg">
       <div className="relative w-full h-72">
         <Image
           src="/team/team2.jpg"
           alt="Responsabile Officina Officina Morgillo"
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />
       </div>
@@ -130,25 +132,26 @@ export default function ChiSiamoPage() {
         </p>
       </div>
     </div>
-  </div>
-  
-  {/* Lavora con noi */}
-<div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg border border-dashed border-blue-500/40">
-  <div className="relative w-full h-72 flex items-center justify-center bg-[#111418]">
-    <Sparkles className="w-14 h-14 text-blue-400 opacity-80" />
-  </div>
-  <div className="p-6 text-center">
-    <h3 className="text-xl font-semibold text-white">
-      Cresci con noi
-    </h3>
-    <p className="text-gray-400 text-sm">
-      Siamo alla continua ricerca di personale specializzato o di giovani
-      motivati da formare e far crescere insieme a noi.
-    </p>
-  </div>
-</div>
 
-</section> 
+    {/* Cresci con noi */}
+    <div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg border border-dashed border-blue-500/40">
+      <div className="relative w-full h-72 flex items-center justify-center bg-[#111418]">
+        <Sparkles className="w-14 h-14 text-blue-400 opacity-80" />
+      </div>
+      <div className="p-6 text-center">
+        <h3 className="text-xl font-semibold text-white">
+          Cresci con noi
+        </h3>
+        <p className="text-gray-400 text-sm">
+          Siamo alla continua ricerca di personale specializzato o di giovani
+          motivati da formare e far crescere insieme a noi.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
       {/* CTA */}
       <section className="text-center py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
         <h2 className="text-3xl font-semibold mb-4">Vuoi conoscerci meglio?</h2>
