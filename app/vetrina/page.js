@@ -1,5 +1,7 @@
 ﻿"use client";
-
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +11,9 @@ export default function VetrinaPage() {
   const [vetrinaData, setVetrinaData] = useState([]);
   const [selected, setSelected] = useState(null);
   const [dettaglio, setDettaglio] = useState(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState([]);
+  
 
   // Caricamento dinamico del file JSON
   useEffect(() => {
@@ -69,7 +74,16 @@ export default function VetrinaPage() {
                 {/* IMMAGINE */}
                 <div
                   className="relative w-full h-64 cursor-pointer"
-                  onClick={() => setSelected(prod.img)}
+                  onClick={() => {
+                    setLightboxImages(
+                      (prod.gallery && prod.gallery.length > 0
+                        ? prod.gallery
+                        : [prod.img]
+                      ).map((src) => ({ src }))
+                    );
+                    setLightboxOpen(true);
+                  }}
+
                 >
                   <Image
                     src={prod.img}
