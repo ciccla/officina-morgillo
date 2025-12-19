@@ -1,134 +1,118 @@
 [
-  
-  
   {
-  "id": 1,
-  "tipo": "vendita",
-  "nome": "Renault Clio 1.0 TCe 90 CV R.S. Line",
-  "descrizione": "Auto in perfette condizioni, anno luglio 2022, 25.000 km, benzina, cambio manuale.",
-  "prezzo": "€ 11.000",
-
-  "img": "/vetrina/renault-clio/cover.jpg",
-
-  "gallery": [
-    "/vetrina/renault-clio/cover.jpg",
-    "/vetrina/renault-clio/1.jpg",
-    "/vetrina/renault-clio/2.jpg",
-    "/vetrina/renault-clio/3.jpg",
-    "/vetrina/renault-clio/4.jpg",
-    "/vetrina/renault-clio/5.jpg",
-    "/vetrina/renault-clio/6.jpg",
-    "/vetrina/renault-clio/7.jpg",
-    "/vetrina/renault-clio/8.jpg",
-    "/vetrina/renault-clio/9.jpg",
-    "/vetrina/renault-clio/10.jpg",
-    "/vetrina/renault-clio/11.jpg",
-    "/vetrina/renault-clio/12.jpg",
-    "/vetrina/renault-clio/13.jpg",
-    "/vetrina/renault-clio/14.jpg",
-    "/vetrina/renault-clio/15.jpg",
-    "/vetrina/renault-clio/16.jpg",
-    "/vetrina/renault-clio/17.jpg",
-    "/vetrina/renault-clio/18.jpg",
-    "/vetrina/renault-clio/19.jpg",
-    "/vetrina/renault-clio/20.jpg",
-    "/vetrina/renault-clio/21.jpg",
-    "/vetrina/renault-clio/22.jpg",
-    "/vetrina/renault-clio/23.jpg",
-    "/vetrina/renault-clio/24.jpg",
-    "/vetrina/renault-clio/25.jpg",
-    "/vetrina/renault-clio/26.jpg",
-    "/vetrina/renault-clio/27.jpg",
-    "/vetrina/renault-clio/28.jpg"
-  ],
-
-  "dettagli": {
-    "anno": 2022,
-    "chilometri": "25.000 km",
-    "alimentazione": "Benzina",
-    "cambio": "Manuale",
-    "colore": "Grigio chiaro metallizzato",
-    "posti": 5,
-    "stato": "Usato garantito"
-  }
-}
-  ,
+    "id": 1,
+    "tipo": "vendita",
+    "nome": "Renault Clio 1.0 TCe 90 CV R.S. Line",
+    "descrizione": "Auto in perfette condizioni, anno luglio 2022, 25.000 km, benzina, cambio manuale.",
+    "prezzo": "€ 11.000",
+    "img": "/vetrina/renault-clio/cover.jpg",
+    "gallery": [
+      "/vetrina/renault-clio/cover.jpg",
+      "/vetrina/renault-clio/1.jpg",
+      "/vetrina/renault-clio/2.jpg",
+      "/vetrina/renault-clio/3.jpg",
+      "/vetrina/renault-clio/4.jpg",
+      "/vetrina/renault-clio/5.jpg",
+      "/vetrina/renault-clio/6.jpg",
+      "/vetrina/renault-clio/7.jpg",
+      "/vetrina/renault-clio/8.jpg",
+      "/vetrina/renault-clio/9.jpg",
+      "/vetrina/renault-clio/10.jpg",
+      "/vetrina/renault-clio/11.jpg",
+      "/vetrina/renault-clio/12.jpg",
+      "/vetrina/renault-clio/13.jpg",
+      "/vetrina/renault-clio/14.jpg",
+      "/vetrina/renault-clio/15.jpg",
+      "/vetrina/renault-clio/16.jpg",
+      "/vetrina/renault-clio/17.jpg",
+      "/vetrina/renault-clio/18.jpg",
+      "/vetrina/renault-clio/19.jpg",
+      "/vetrina/renault-clio/20.jpg",
+      "/vetrina/renault-clio/21.jpg",
+      "/vetrina/renault-clio/22.jpg",
+      "/vetrina/renault-clio/23.jpg",
+      "/vetrina/renault-clio/24.jpg",
+      "/vetrina/renault-clio/25.jpg",
+      "/vetrina/renault-clio/26.jpg",
+      "/vetrina/renault-clio/27.jpg",
+      "/vetrina/renault-clio/28.jpg"
+    ],
+    "dettagli": {
+      "anno": 2022,
+      "chilometri": "25.000 km",
+      "alimentazione": "Benzina",
+      "cambio": "Manuale",
+      "colore": "Grigio chiaro metallizzato",
+      "posti": 5,
+      "stato": "Usato garantito"
+    }
+  },
   {
-  "id": 2,
-  "tipo": "vendita",
-  "nome": "dacia sandero van 1.0 sce 100 cv",
-  "descrizione": "Auto in perfette condizioni, anno luglio 2021, 25.000 km, benzina, cambio manuale.",
-  "prezzo": "€ 7.000",
-
-  "img": "/vetrina/Dacia-sandero/cover.jpg",
-
-  "gallery": [
-    "/vetrina/Dacia-sandero/cover.jpg",
-    "/vetrina/Dacia-sandero/1.jpg",
-    "/vetrina/Dacia-sandero/2.jpg",
-    "/vetrina/Dacia-sandero/3.jpg",
-    "/vetrina/Dacia-sandero/4.jpg",
-    "/vetrina/Dacia-sandero/5.jpg",
-    "/vetrina/Dacia-sandero/6.jpg",
-    "/vetrina/Dacia-sandero/7.jpg",
-    "/vetrina/Dacia-sandero/8.jpg",
-    "/vetrina/Dacia-sandero/9.jpg",
-    "/vetrina/Dacia-sandero/10.jpg",
-    "/vetrina/Dacia-sandero/11.jpg",
-    "/vetrina/Dacia-sandero/12.jpg"
-  ],
-
-  "dettagli": {
-    "anno": 2021,
-    "chilometri": "42.500 km",
-    "alimentazione": "Benzina/gpl",
-    "cambio": "Manuale",
-    "colore": "Bianco",
-    "posti": 2,
-    "stato": "Usato garantito"
-  }
-}
-  , 
+    "id": 2,
+    "tipo": "vendita",
+    "nome": "Dacia Sandero Van 1.0 SCE 100 CV",
+    "descrizione": "Auto in perfette condizioni, anno luglio 2021, 42.500 km, benzina/GPL, cambio manuale.",
+    "prezzo": "€ 7.000",
+    "img": "/vetrina/dacia-sandero/cover.jpg",
+    "gallery": [
+      "/vetrina/dacia-sandero/cover.jpg",
+      "/vetrina/dacia-sandero/1.jpg",
+      "/vetrina/dacia-sandero/2.jpg",
+      "/vetrina/dacia-sandero/3.jpg",
+      "/vetrina/dacia-sandero/4.jpg",
+      "/vetrina/dacia-sandero/5.jpg",
+      "/vetrina/dacia-sandero/6.jpg",
+      "/vetrina/dacia-sandero/7.jpg",
+      "/vetrina/dacia-sandero/8.jpg",
+      "/vetrina/dacia-sandero/9.jpg",
+      "/vetrina/dacia-sandero/10.jpg",
+      "/vetrina/dacia-sandero/11.jpg",
+      "/vetrina/dacia-sandero/12.jpg"
+    ],
+    "dettagli": {
+      "anno": 2021,
+      "chilometri": "42.500 km",
+      "alimentazione": "Benzina / GPL",
+      "cambio": "Manuale",
+      "colore": "Bianco",
+      "posti": 2,
+      "stato": "Usato garantito"
+    }
+  },
   {
-  "id": 3,
-  "tipo": "vendita",
-  "nome": "BMW Serie 1 116d 5p. Msport",
-  "descrizione": "Auto in perfette condizioni, anno giugno 2021, 25.000 km, benzina, cambio manuale.",
-  "prezzo": "€ 17.000",
-
-  "img": "/vetrina/BMW-serie1/cover.jpg",
-
-  "gallery": [
-    "/vetrina/BMW-serie1/cover.jpg",
-    "/vetrina/BMW-serie1/1.jpg",
-    "/vetrina/BMW-serie1/2.jpg",
-    "/vetrina/BMW-serie1/3.jpg",
-    "/vetrina/BMW-serie1/4.jpg",
-    "/vetrina/BMW-serie1/5.jpg",
-    "/vetrina/BMW-serie1/6.jpg",
-    "/vetrina/BMW-serie1/7.jpg",
-    "/vetrina/BMW-serie1/8.jpg",
-    "/vetrina/BMW-serie1/9.jpg",
-    "/vetrina/BMW-serie1/10.jpg",
-    "/vetrina/BMW-serie1/11.jpg",
-    "/vetrina/BMW-serie1/12.jpg",
-    "/vetrina/BMW-serie1/13.jpg",
-    "/vetrina/BMW-serie1/14.jpg",
-    "/vetrina/BMW-serie1/15.jpg",
-    "/vetrina/BMW-serie1/16.jpg"
-
-
-  ],
-
-  "dettagli": {
-    "anno": 2021,
-    "chilometri": "91.000 km",
-    "alimentazione": "Diesel",
-    "cambio": "Automatico",
-    "colore": "grigio canna di fucile metallizzato",
-    "posti": 5,
-    "stato": "Usato garantito"
+    "id": 3,
+    "tipo": "vendita",
+    "nome": "BMW Serie 1 116d 5p. M Sport",
+    "descrizione": "Auto in perfette condizioni, anno giugno 2021, 91.000 km, diesel, cambio automatico.",
+    "prezzo": "€ 17.000",
+    "img": "/vetrina/bmw-serie1/cover.jpg",
+    "gallery": [
+      "/vetrina/bmw-serie1/cover.jpg",
+      "/vetrina/bmw-serie1/1.jpg",
+      "/vetrina/bmw-serie1/2.jpg",
+      "/vetrina/bmw-serie1/3.jpg",
+      "/vetrina/bmw-serie1/4.jpg",
+      "/vetrina/bmw-serie1/5.jpg",
+      "/vetrina/bmw-serie1/6.jpg",
+      "/vetrina/bmw-serie1/7.jpg",
+      "/vetrina/bmw-serie1/8.jpg",
+      "/vetrina/bmw-serie1/9.jpg",
+      "/vetrina/bmw-serie1/10.jpg",
+      "/vetrina/bmw-serie1/11.jpg",
+      "/vetrina/bmw-serie1/12.jpg",
+      "/vetrina/bmw-serie1/13.jpg",
+      "/vetrina/bmw-serie1/14.jpg",
+      "/vetrina/bmw-serie1/15.jpg",
+      "/vetrina/bmw-serie1/16.jpg"
+    ],
+    "dettagli": {
+      "anno": 2021,
+      "chilometri": "91.000 km",
+      "alimentazione": "Diesel",
+      "cambio": "Automatico",
+      "colore": "Grigio canna di fucile metallizzato",
+      "posti": 5,
+      "stato": "Usato garantito"
+    }
   }
-}
 ]
-  
