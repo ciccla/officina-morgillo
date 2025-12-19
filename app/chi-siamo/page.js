@@ -83,31 +83,72 @@ export default function ChiSiamoPage() {
       </section>
 
       {/* TEAM */}
-      <section className="py-20 px-6 md:px-12 text-center">
-        <h2 className="text-3xl font-semibold mb-10 text-blue-400">Il nostro team</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform"
-            >
-              <div className="relative w-full h-72">
-                <Image
-                  src={`/team/team${i}.jpg`}
-                  alt={`Membro ${i}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white">Membro {i}</h3>
-                <p className="text-gray-400 text-sm">Ruolo tecnico / specializzazione</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+<section className="py-20 px-6 md:px-12 text-center">
+  <h2 className="text-3xl font-semibold mb-10 text-blue-400">
+    Il nostro team
+  </h2>
 
+  <div className="grid sm:grid-cols-2 gap-10 max-w-4xl mx-auto">
+    {/* Responsabile Tecnico */}
+    <div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg">
+      <div className="relative w-full h-72">
+        <Image
+          src="/team/team1.jpg"
+          alt="Responsabile Tecnico Officina Morgillo"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6 text-center">
+        <h3 className="text-xl font-semibold text-white">
+          Titolare & Responsabile Tecnico
+        </h3>
+        <p className="text-gray-400 text-sm">
+          Specializzato in meccanica avanzata e veicoli elettrici, con costante
+          aggiornamento sulle nuove tecnologie automotive.
+        </p>
+      </div>
+    </div>
+
+    {/* Responsabile Officina */}
+    <div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg">
+      <div className="relative w-full h-72">
+        <Image
+          src="/team/team2.jpg"
+          alt="Responsabile Officina Officina Morgillo"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6 text-center">
+        <h3 className="text-xl font-semibold text-white">
+          Responsabile Officina
+        </h3>
+        <p className="text-gray-400 text-sm">
+          Specialista in cambi automatici, diagnostica professionale e gestione
+          degli interventi complessi.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  {/* Lavora con noi */}
+<div className="bg-[#1a1e23] rounded-2xl overflow-hidden shadow-lg border border-dashed border-blue-500/40">
+  <div className="relative w-full h-72 flex items-center justify-center bg-[#111418]">
+    <Sparkles className="w-14 h-14 text-blue-400 opacity-80" />
+  </div>
+  <div className="p-6 text-center">
+    <h3 className="text-xl font-semibold text-white">
+      Cresci con noi
+    </h3>
+    <p className="text-gray-400 text-sm">
+      Siamo alla continua ricerca di personale specializzato o di giovani
+      motivati da formare e far crescere insieme a noi.
+    </p>
+  </div>
+</div>
+
+</section> 
       {/* CTA */}
       <section className="text-center py-16 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
         <h2 className="text-3xl font-semibold mb-4">Vuoi conoscerci meglio?</h2>
