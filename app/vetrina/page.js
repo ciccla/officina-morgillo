@@ -8,12 +8,11 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function VetrinaPage() {
-  const [vetrinaData, setVetrinaData] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [dettaglio, setDettaglio] = useState(null);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxImages, setLightboxImages] = useState([]);
-  
+const [vetrinaData, setVetrinaData] = useState([]);
+const [dettaglio, setDettaglio] = useState(null);
+const [lightboxOpen, setLightboxOpen] = useState(false);
+const [lightboxImages, setLightboxImages] = useState([]);
+
 
   // Caricamento dinamico del file JSON
   useEffect(() => {
@@ -147,23 +146,7 @@ export default function VetrinaPage() {
         </div>
       </section>
 
-      {/* MODALE IMMAGINE */}
-      {selected && (
-        <div
-          onClick={() => setSelected(null)}
-          className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 cursor-zoom-out"
-        >
-          <Image
-            src={prod.img}
-            alt={prod.nome}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-center"
-          />
-
-        </div>
-      )}
-
+      
       {/* MODALE DETTAGLI */}
       {dettaglio && (
         <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 px-4">
@@ -229,7 +212,17 @@ export default function VetrinaPage() {
         >
           Contattaci ora
         </Link>
-      </section>
+              
+              </section>
+                
+                  
+                <Lightbox
+                open={lightboxOpen}
+                close={() => setLightboxOpen(false)}
+                slides={lightboxImages}
+                plugins={[Zoom]}
+              />
+
     </main>
   );
 }
