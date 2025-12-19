@@ -74,12 +74,15 @@ const [lightboxImages, setLightboxImages] = useState([]);
                 <div
                   className="relative w-full h-64 cursor-pointer"
                   onClick={() => {
-                    setLightboxImages(
-                      (prod.gallery && prod.gallery.length > 0
-                        ? prod.gallery
-                        : [prod.img]
-                      ).map((src) => ({ src }))
-                    );
+                    const slides = (prod.gallery && prod.gallery.length > 0
+                      ? prod.gallery
+                      : [prod.img]
+                    ).map((src, index) => ({
+                      src,
+                      preload: index === 0, // 👈 SOLO la prima subito
+                    }));
+
+                    setLightboxImages(slides);
                     setLightboxOpen(true);
                   }}
 
