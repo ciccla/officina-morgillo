@@ -154,12 +154,13 @@ export default function VetrinaPage() {
           className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 cursor-zoom-out"
         >
           <Image
-            src={selected}
-            alt="Zoom"
-            width={900}
-            height={600}
-            className="rounded-lg object-contain"
+            src={prod.img}
+            alt={prod.nome}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-center"
           />
+
         </div>
       )}
 
