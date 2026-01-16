@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import Navbar from "./components/Navbar";
+import Script from "next/script";
+
 import {
   FaInstagram,
   FaTiktok,
@@ -31,7 +33,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="it" suppressHydrationWarning>
+  <head>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
+      strategy="afterInteractive"
+    />
+    <Script id="google-ads" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-1786192540');
+      `}
+    </Script>
+  </head>
 
       <body
         className={`${poppins.className} bg-biancoTec text-acc min-h-screen flex flex-col`}
