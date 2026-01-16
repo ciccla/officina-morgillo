@@ -13,7 +13,7 @@ import {
   FaRegClock,
   FaBuilding,
   FaMailBulk,
-} from "react-icons/fa"; // 👈 tutte le icone reali
+} from "react-icons/fa";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,26 +29,22 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="it" suppressHydrationWarning>
-  <head>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-    <Script
-      src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
-      strategy="afterInteractive"
-    />
-    <Script id="google-ads" strategy="afterInteractive">
-      {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-1786192540');
-      `}
-    </Script>
-  </head>
+      {/* ✅ Google Ads tag (AW) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
+        strategy="afterInteractive"
+      />
+      <Script id="google-ads" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-1786192540');
+        `}
+      </Script>
 
       <body
         className={`${poppins.className} bg-biancoTec text-acc min-h-screen flex flex-col`}
@@ -68,7 +64,7 @@ export default function RootLayout({ children }) {
                 Officina <span className="text-blue-400">Morgillo</span>
               </h2>
               <p className="text-sm text-gray-400 leading-relaxed">
-                Tecnologia e passione per la tua auto.  
+                Tecnologia e passione per la tua auto.
                 Diagnosi elettronica, manutenzione e assistenza completa su auto
                 tradizionali, ibride ed elettriche.
               </p>
@@ -121,7 +117,6 @@ export default function RootLayout({ children }) {
                   >
                     +39 350 875 4465
                   </a>
-
                 </li>
                 <li className="flex items-center gap-2">
                   <FaEnvelope className="text-blue-400" />
@@ -168,7 +163,8 @@ export default function RootLayout({ children }) {
           {/* LINEA DIVISORIA */}
           <div className="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-500">
             <p>
-              © {new Date().getFullYear()} M.R. SERVICES s.r.l. — Tutti i diritti riservati  
+              © {new Date().getFullYear()} M.R. SERVICES s.r.l. — Tutti i diritti
+              riservati
               <br />
               Realizzato con ❤️ da Officina Morgillo
             </p>
