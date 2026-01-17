@@ -2,6 +2,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Script from "next/script";
+import CookieBanner from "./components/CookieBanner";
 
 import {
   FaInstagram,
@@ -24,31 +25,53 @@ const poppins = Poppins({
 export const metadata = {
   title: "Officina Morgillo",
   description: "Tecnologia e passione per la tua auto.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="it" suppressHydrationWarning>
-      {/* ✅ Google Ads tag (AW) */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
-        strategy="afterInteractive"
-      />
-      <Script id="google-ads" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-1786192540');
-        `}
-      </Script>
+      <head>
+        {/* ✅ Consent Mode v2: DEFAULT NEGATO (prima di qualsiasi gtag) */}
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              analytics_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              wait_for_update: 500
+            });
+          `}
+        </Script>
+
+        {/* ✅ Google Ads tag (AW) - caricato, ma resta bloccato finché consenso non è granted */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+
+            gtag('js', new Date());
+            gtag('config', 'AW-1786192540');
+          `}
+        </Script>
+      </head>
 
       <body
         className={`${poppins.className} bg-biancoTec text-acc min-h-screen flex flex-col`}
       >
+        {/* ✅ Banner cookie globale */}
+        <CookieBanner />
+
         {/* ✅ NAVBAR GLOBALE */}
         <Navbar />
 
@@ -64,9 +87,9 @@ export default function RootLayout({ children }) {
                 Officina <span className="text-blue-400">Morgillo</span>
               </h2>
               <p className="text-sm text-gray-400 leading-relaxed">
-                Tecnologia e passione per la tua auto.
-                Diagnosi elettronica, manutenzione e assistenza completa su auto
-                tradizionali, ibride ed elettriche.
+                Tecnologia e passione per la tua auto. Diagnosi elettronica,
+                manutenzione e assistenza completa su auto tradizionali, ibride
+                ed elettriche.
               </p>
 
               {/* SOCIAL ICONS */}
@@ -156,6 +179,36 @@ export default function RootLayout({ children }) {
                 <li>P.IVA: 06092040655</li>
                 <li>Sede legale: Via Voscone 24, 84087 Sarno (SA)</li>
                 <li>Iscritta al Registro Imprese di Salerno</li>
+
+                {/* ✅ LINK LEGALI */}
+                <li className="pt-3">
+                  <a href="/privacy" className="hover:text-blue-400 transition">
+                    Privacy Policy
+                  </a>
+                  <span className="mx-2 text-gray-600">|</span>
+                  <a
+                    href="/cookie-policy"
+                    className="hover:text-blue-400 transition"
+                  >
+                    Cookie Policy
+                  </a>
+                  <span className="mx-2 text-gray-600">|</span>
+                  <button
+                    type="button"
+                    className="hover:text-blue-400 transition"
+                    onClick={() => {
+                      if (typeof window !== "undefined" && window.__om_reopenCookieBanner) {
+                        window.__om_reopenCookieBanner();
+                      } else {
+                        // fallback: forziamo riapertura rimuovendo la scelta
+                        localStorage.removeItem("om_cookie_consent_v1");
+                        window.location.reload();
+                      }
+                    }}
+                  >
+                    Gestisci cookie
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
