@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Script from "next/script";
 import CookieBanner from "./components/CookieBanner";
+import ManageCookiesButton from "./components/ManageCookiesButton";
 
 import {
   FaInstagram,
@@ -193,21 +194,8 @@ export default function RootLayout({ children }) {
                     Cookie Policy
                   </a>
                   <span className="mx-2 text-gray-600">|</span>
-                  <button
-                    type="button"
-                    className="hover:text-blue-400 transition"
-                    onClick={() => {
-                      if (typeof window !== "undefined" && window.__om_reopenCookieBanner) {
-                        window.__om_reopenCookieBanner();
-                      } else {
-                        // fallback: forziamo riapertura rimuovendo la scelta
-                        localStorage.removeItem("om_cookie_consent_v1");
-                        window.location.reload();
-                      }
-                    }}
-                  >
-                    Gestisci cookie
-                  </button>
+                  <ManageCookiesButton />
+
                 </li>
               </ul>
             </div>

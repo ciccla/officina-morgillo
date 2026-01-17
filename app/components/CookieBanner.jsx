@@ -7,28 +7,62 @@ const CONSENT_KEY = "om_cookie_consent_v1";
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
 
+  // 1) All'avvio: se esiste una scelta salvata, aggiorna subito il consenso
+  //    Se NON esiste, mostra il banner
   useEffect(() => {
     const saved = localStorage.getItem(CONSENT_KEY);
-    if (!saved) setOpen(true);
+
+    if (!saved) {
+      setOpen(true);
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      const granted = !!(parsed.analytics || parsed.marketing);
+
+      if (window.gtag) {
+        window.gtag("consent", "update", {
+          analytics_storage: granted ? "granted" : "denied",
+          ad_storage: granted ? "granted" : "denied",
+          ad_user_data: granted ? "granted" : "denied",
+          ad_personalization: granted ? "granted" : "denied",
+        });
+      }
+    } catch (e) {
+      // se per qualche motivo è corrotto, reset e riapri banner
+      localStorage.removeItem(CONSENT_KEY);
+      setOpen(true);
+    }
+  }, []);
+
+  // 2) Espone un metodo globale per riaprire il banner dal footer ("Gestisci cookie")
+  useEffect(() => {
+    window.__om_reopenCookieBanner = () => setOpen(true);
+    return () => {
+      // cleanup
+      if (window.__om_reopenCookieBanner) delete window.__om_reopenCookieBanner;
+    };
   }, []);
 
   const setConsent = (type) => {
-    // type: "accept" | "reject"
+    const granted = type === "accept";
+
     const consent = {
       necessary: true,
-      analytics: type === "accept",
-      marketing: type === "accept",
+      analytics: granted,
+      marketing: granted,
       ts: Date.now(),
     };
     localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
 
     // Aggiorna Google Consent Mode (gtag)
-    if (typeof window !== "undefined" && window.gtag) {
+    if (window.gtag) {
       window.gtag("consent", "update", {
-        analytics_storage: type === "accept" ? "granted" : "denied",
-        ad_storage: type === "accept" ? "granted" : "denied",
-        ad_user_data: type === "accept" ? "granted" : "denied",
-        ad_personalization: type === "accept" ? "granted" : "denied",
+        analytics_storage: granted ? "granted" : "denied",
+        ad_storage: granted ? "granted" : "denied",
+        ad_user_data: granted ? "granted" : "denied",
+        ad_personalization: granted ? "granted" : "denied",
       });
     }
 
@@ -45,8 +79,8 @@ export default function CookieBanner() {
             <p className="font-semibold text-white mb-1">Cookie e privacy</p>
             <p>
               Usiamo cookie tecnici necessari e, solo con il tuo consenso, cookie
-              di analisi e marketing per migliorare l’esperienza e misurare le campagne.
-              Leggi la{" "}
+              di analisi e marketing per migliorare l’esperienza e misurare le
+              campagne. Leggi la{" "}
               <a href="/privacy" className="text-blue-400 hover:underline">
                 Privacy Policy
               </a>{" "}
