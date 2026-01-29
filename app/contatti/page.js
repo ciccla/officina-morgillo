@@ -31,6 +31,13 @@ export default function ContattiPage() {
     messaggio: "",
   });
 
+    const trackConversion = (sendTo) => {
+    if (typeof window !== "undefined" && window.gtag && sendTo) {
+      window.gtag("event", "conversion", { send_to: sendTo });
+    }
+  };
+
+
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -50,8 +57,12 @@ export default function ContattiPage() {
 
       setSuccess(true);
       setShowOverlay(true);
+            // ✅ Google Ads conversion: Invio modulo (label dalla mail)
+      trackConversion("AW-17861912540/_uFnCOv37-4bENzPnMVC");
+
       setFormData({
         nome: "",
+        cognome: "",
         email: "",
         telefono: "",
         oggetto: "",
@@ -117,6 +128,8 @@ export default function ContattiPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 transition"
+              onClick={() => trackConversion("AW-17861912540/_uFnCOv37-4bENzPnMVC")}
+
             >
               Via Voscone 24, Sarno (SA)
             </a>
@@ -133,6 +146,9 @@ export default function ContattiPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-400 transition"
+              onClick={() => trackConversion("AW-17861912540/_uFnCOv37-4bENzPnMVC")}
+
+
             >
               Chatta con noi su WhatsApp
             </a>

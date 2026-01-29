@@ -51,20 +51,22 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* ✅ Google Ads tag (AW) - caricato, ma resta bloccato finché consenso non è granted */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-1786192540"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
+       <Script
+  src="https://www.googletagmanager.com/gtag/js?id=AW-17861912540"
+  strategy="afterInteractive"
+/>
 
-            gtag('js', new Date());
-            gtag('config', 'AW-1786192540');
-          `}
-        </Script>
+<Script id="google-ads" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', 'AW-17861912540');
+  `}
+</Script>
+
       </head>
 
       <body
